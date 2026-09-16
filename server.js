@@ -3,6 +3,10 @@ const crypto = require('crypto');
 const webSocket = require('ws');
 const readline = require('readline');
 
+// cowebs
+
+const web = require("./lib/web.js")
+
 class CommandExtender {
     constructor(server) {
         this.server = server;
@@ -154,4 +158,4 @@ class Server extends EventEmitter {
     }
 }
 
-module.exports = { Server, CommandExtender };
+module.exports = { Server, CommandExtender, web };

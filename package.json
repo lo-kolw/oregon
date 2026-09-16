@@ -1,6 +1,6 @@
 {
-  "name": "oregon",
-  "version": "0.1.0",
+  "name": "oregonserver",
+  "version": "1.0.2",
   "description": "The librany for you broadcasts.",
   "homepage": "https://github.com/lo-kolw/oregon#readme",
   "bugs": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/lo-kolw/oregon.git"
   },
   "license": "ISC",
-  "author": "lo-kolw and PPauloa37",
+  "author": "oregonpack",
   "type": "commonjs",
   "main": "server.js",
   "directories": {

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cliente Oragon</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; background: #f7f7f9; color: rgb(0, 132, 255); padding: 20px; }
+        #chat {
+            width: 400px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        #message {
+            width: 100%;
+            padding: 8px;
+            background: #ffffff;
+            border: 1px solid #4d4d52;
+            color: rgb(0, 132, 255);
+            box-sizing: border-box;
+        }
+        p { margin: 5px 0; padding: 2px 0; }
+        button { background: #04d361; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+
+<body>
+    <h1>Conectar ao Servidor Oragon</h1>
+    <button id="btnConectar" onclick="entrarNoServidor()">Entrar no Servidor</button>
+    
+    <div id="chat">
+        <div id="messages">
+            <p style="color: #8a8a8a;">Welcome to the match #chat</p>
+        </div>
+        <div id="controls">
+            <input type="text" id="message" placeholder="Aperte Enter para falar..." disabled>
+        </div>
+    </div>
+
+    <script>
+        const msgs = document.getElementById("messages");
+        const mi = document.getElementById("message");
+        const btn = document.getElementById("btnConectar");
+
+        function entrarNoServidor() {
+            const ws = new WebSocket('ws://localhost:25565');
+            var name = "LunarClient#" + Math.floor(Math.random() * 1567);
+
+            ws.onopen = () => {
+                console.log('Conectado ao servidor! Enviando pacote de entrada...');
+                btn.textContent = "Conectado ✔";
+                btn.disabled = true;
+                mi.disabled = false; // Ativa o campo de texto apenas quando conectar
+
+                const pacoteJoin = {
+                    type: "join",
+                    name: name,
+                    skin: "default_skin"
+                };
+
+                ws.send(JSON.stringify(pacoteJoin));
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                console.log('Mensagem recebida do servidor:', data);
+
+                if (data.type === "notification") {
+                    alert("Mensagem do Servidor: " + data.message);
+                }
+                if (data.type === "join") {
+                    const container = document.createElement("p");
+                    container.innerHTML = `<b style="color: #04d361;">[+] ${data.client}</b> entrou na partida.`;
+                    msgs.appendChild(container);
+                    msgs.scrollTop = msgs.scrollHeight;
+                }
+
+                if (data.type === "chat" || data.type === "message") {
+                    const container = document.createElement("p");
+                    container.innerHTML = `<b>${data.name}:</b> ${data.content || data.message}`;
+                    msgs.appendChild(container);
+                    msgs.scrollTop = msgs.scrollHeight;
+                }
+            };
+
+            ws.onclose = () => {
+                console.log('Conexão encerrada com o servidor.');
+                btn.textContent = "Entrar no Servidor";
+                btn.disabled = false;
+                mi.disabled = true;
+            };
+
+            mi.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" && e.target.value.trim() !== "") {
+                
+                    const pacoteChat = {
+                        type: "message", 
+                        name: name,
+                        message: e.target.value,
+                        job: "broadcast"
+                    };
+
+                    ws.send(JSON.stringify(pacoteChat));
+                    console.log("Enviado:", pacoteChat);
+
+                    e.target.value = "";
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

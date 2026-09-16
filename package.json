@@ -1,0 +1,29 @@
+{
+  "name": "oregon",
+  "version": "0.1.0",
+  "description": "The librany for you broadcasts.",
+  "homepage": "https://github.com/lo-kolw/oregon#readme",
+  "bugs": {
+    "url": "https://github.com/lo-kolw/oregon/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lo-kolw/oregon.git"
+  },
+  "license": "ISC",
+  "author": "lo-kolw and PPauloa37",
+  "type": "commonjs",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "ws": "^8.21.3"
+  }
+}

@@ -1,6 +1,6 @@
 
 ## Badges
-[![NPM](https://img.shields.io/badge/npm-repo-green?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/oregonserver)
+[![NPM](https://img.shields.io/badge/npm-pack-green?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/oregonserver)
 [![GITHUB](https://shields.io/badge/github-repo-blue?style=for-the-badge&logo=github)](https://github.com/lo-kolw/oregon)
 [![CONTRIBUTORS](https://img.shields.io/github/contributors/lo-kolw/oregon?style=for-the-badge)](https://github.com/lo-kolw/oregon)
 [![Downloads](https://img.shields.io/npm/dm/oregonserver?style=for-the-badge)](https://github.com/lo-kolw/oregon)  

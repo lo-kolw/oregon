@@ -9,6 +9,8 @@
 
 Oragon Servers is a live streaming API for clients; it is lightweight, compact, and very easy to install.
 
+[To more examples here!](https://github.com/lo-kolw/oregon/wiki/)
+
 ## Example code to listen:
 ```
 const oregon = require("oregonserver")

@@ -1,9 +1,9 @@
 
 ## Badges
-[![NPM](https://img.shields.io/badge/npm-pack-green?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/oregonserver)
+[![NPM](https://img.shields.io/badge/npm-repo-green?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/oregonserver)
 [![GITHUB](https://shields.io/badge/github-repo-blue?style=for-the-badge&logo=github)](https://github.com/lo-kolw/oregon)
 [![CONTRIBUTORS](https://img.shields.io/github/contributors/lo-kolw/oregon?style=for-the-badge)](https://github.com/lo-kolw/oregon)
-[![Downloads](https://img.shields.io/npm/dm/oregonserver?style=for-the-badge)](https://github.com/lo-kolw/oregon)  
+[![Downloads](https://img.shields.io/npm/dw/oregonserver?style=for-the-badge)](https://github.com/lo-kolw/oregon)  
 🙏🏻 Help us grow, too new
 # Oragon Server
 
@@ -30,13 +30,13 @@ const server = new oregon.Server({
 // Sec for listen To listen
 ```
 
-## With the web extension and commandLine:
+## With the web extension and commandLine (extender logs):
 ```
 const cmdLine = new oregon.CommandExtender(server)
 cmdLine.active()
 
 server.on('listen', sv => {
-    console.log(`Servidor ${sv.name} ativo na porta ${sv.port}`)
+    console.log(`Server ${sv.name} active in: ${sv.port}`)
 })
 server.on('connection', client => {
     console.log("[+] " + client.name)
@@ -54,9 +54,9 @@ oregon.web.op(server)
 ## To listen
 ```
 // Server one
-server.listen(
+server.listen()
 
-// web server
+// web server, password initial: OAH137
 oregon.web.listen(25564)
 ```
 

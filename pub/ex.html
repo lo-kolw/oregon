@@ -34,15 +34,15 @@
 </head>
 
 <body>
-    <h1>Conectar ao Servidor Oragon</h1>
-    <button id="btnConectar" onclick="entrarNoServidor()">Entrar no Servidor</button>
+    <h1>Connect to Server</h1>
+    <button id="btnConectar" onclick="entrarNoServidor()">Connect</button>
     
     <div id="chat">
         <div id="messages">
-            <p style="color: #8a8a8a;">Welcome to the match #chat</p>
+            <p style="color: #8a8a8a;">Welcome to the mato#chat</p>
         </div>
         <div id="controls">
-            <input type="text" id="message" placeholder="Aperte Enter para falar..." disabled>
+            <input type="text" id="message" placeholder="Type..." disabled>
         </div>
     </div>
 
@@ -57,9 +57,9 @@
 
             ws.onopen = () => {
                 console.log('Conectado ao servidor! Enviando pacote de entrada...');
-                btn.textContent = "Conectado ✔";
+                btn.textContent = "Connected ✔";
                 btn.disabled = true;
-                mi.disabled = false; // Ativa o campo de texto apenas quando conectar
+                mi.disabled = false;
 
                 const pacoteJoin = {
                     type: "join",

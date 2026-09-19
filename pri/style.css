@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    overflow: hidden;
+}
+.vertical-panel {
+    width: 100px;
+}
+.vertical-panel a {
+    color: rgb(6, 6, 6);
+    text-decoration: none;
+    padding: 10px;
+    width: 100px;
+}
+#root {
+    border-left: 1px solid black;
+    padding-left: 15px;
+    height: 88vh;
+    margin-left: 50px;
+    overflow: auto;
+}
+.flex {
+    display: flex;
+}
+canvas {
+    width: 500px;
+    height: 400px;
+}

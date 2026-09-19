@@ -1,6 +1,6 @@
 {
   "name": "oregonserver",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "The librany for you broadcasts.",
   "homepage": "https://github.com/lo-kolw/oregon#readme",
   "bugs": {
@@ -22,6 +22,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "ws": "^8.21.3"

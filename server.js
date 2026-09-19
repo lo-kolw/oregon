@@ -24,7 +24,7 @@ class CommandExtender {
 
             switch (comando) {
                 case 'status':
-                    console.log(`[+] Servidor ${this.server ? this.server.name : ''} rodando perfeitamente.`);
+                    console.log(`[s+] Ok ${this.server ? this.server.name : ''}`);
                     break;
 
                 case 'kick': {
@@ -37,7 +37,7 @@ class CommandExtender {
                         if (this.server && this.server.wss) {
                             this.server.wss.clients.forEach(client => {
                                 if (client.name === playerKick) {
-                                    client.send(JSON.stringify({ type: "notification", message: "Você foi expulso do servidor." }));
+                                    client.send(JSON.stringify({ type: "notification", message: "Your kicked by operator." }));
                                     client.close();
                                 }
                             });
@@ -120,6 +120,13 @@ class Server extends EventEmitter {
                         ws.name = msg.name;
                         this.clients.push({ uuid: ws.id, name: ws.name, role: "member" });
                         this.emit('connection', { id: ws.id, name: ws.name });
+                        const payload = JSON.stringify({
+                            type: "join",
+                            client: ws.name || msg.name,
+                            skin: msg.skin,
+                            role: this.clients.find(c => c.name == msg.name).role || "member"
+                        });
+                        this.broadcast(payload)
                     }
                     if (msg.type === "message") {
                         ws.name = msg.name
@@ -128,13 +135,7 @@ class Server extends EventEmitter {
                         this.emit('connection', { id: ws.id, name: ws.name });
                         if (msg.job) { this.broadcast(mesg) }
                     }
-                    const payload = JSON.stringify({
-                        type: "join",
-                        client: ws.name || msg.name,
-                        skin: msg.skin,
-                        role: this.clients.find(c => c.name == msg.name).role || "member"
-                    });
-                    this.broadcast(payload)
+
 
                 } catch (err) {
                     console.error("Erro ao processar mensagem JSON:", err.message);
